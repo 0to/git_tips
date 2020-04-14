@@ -63,7 +63,29 @@ git log --merges
     # --merges  Print only merge commits. This is exactly the same as --min-parents=2.
 
 git log -1 CommitID --cc
+    OR
 git show CommitID
     # -c or --cc option to produce a combined diff when showing a merge.
     # This is the default format when showing merges with git-show
+```
+
+### bad signature, index file corrupt 问题
+场景：
+```
+$ git status
+
+error: bad signature
+fatal: index file corrupt
+```
+
+原因分析： .git/index 保存了暂存区的信息（索引信息），index file corrupt说明此文件损坏了。
+
+解决方法：
+```
+# 删除损坏的索引文件
+rm .git/index
+# 重建索引文件
+git read-tree   # Reads tree information into the index
+    OR
+git reset      # Reset current HEAD to the specified state
 ```
