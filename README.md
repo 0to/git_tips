@@ -17,6 +17,17 @@ git branch -a --contains CommitID
 git branch -a --contains 9f4a67782
 ```
 
+### 查看指定分支上Patch对应了多少Tag
+场景:
+1. 需要同步指定分支和相关Tags到另外一个代码库；
+```
+git tag --merged Branch_name
+    # --merged <提交>       只打印已经合并的标签
+    # --no-merged <提交>    只打印尚未合并的标签
+
+git tag --merged develop
+```
+
 ### 修改当前版本提交信息(人员/日期)
 场景：
 1. 机器时间不对，导致git显示版本时很奇怪；
