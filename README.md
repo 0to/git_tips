@@ -100,3 +100,29 @@ git read-tree   # Reads tree information into the index
     OR
 git reset      # Reset current HEAD to the specified state
 ```
+
+### 编写多行commit message方法
+日常使用中，我们经常会编写多行commit message来提供更多信息。
+
+有下面几种方法来实现：
+1. 如果是个人编写多行commit message：使用editor工具
+- core.editor=vim 当前git config编辑工具为vim，各位有可能配置了其他工具；
+- 执行git commit 会自动弹出交互式编辑工具窗口，编写完成后保持退出即可。
+2. 如果是命令行/脚本自动生成多行commit message：使用多个-m参数来实现
+```
+-m <msg>
+    --message=<msg>
+    Use the given <msg> as the commit message. If multiple -m options are given, their values are concatenated as separate paragraphs.
+
+执行命令：
+git commit -m "commit title" -m "commit test case" -m "commit by wwl"
+结果如下：
+Author: weilong.wang@memblaze.com <weilong.wang@memblze.com>
+Date:   Thu Jul 16 09:12:17 2020 +0800
+
+    commit title
+
+    commit test case
+
+    commit by wwl
+```
